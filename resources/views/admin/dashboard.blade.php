@@ -17,7 +17,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-slate-400 mb-1">Pending Requests</p>
-                            <p class="text-3xl font-bold text-slate-100">15</p>
+                            <p class="text-3xl font-bold text-slate-100">{{ Auth::user()->where('email_verified_at', '')->count() }}</p>
                         </div>
                         <div class="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,16 +25,13 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="mt-3 text-sm text-blue-400 flex items-center">
-                        <span>+2.5% from yesterday</span>
-                    </div>
                 </div>
 
                 <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg hover:border-slate-600 transition-colors">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-slate-400 mb-1">Total Residents</p>
-                            <p class="text-3xl font-bold text-slate-100">1,234</p>
+                            <p class="text-3xl font-bold text-slate-100">{{ Auth::user()->where('roleType', 'resident')->count()}}</p>
                         </div>
                         <div class="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 14 20">
@@ -42,25 +39,19 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="mt-3 text-sm text-blue-400 flex items-center">
-                        <span>+5.2% this month</span>
-                    </div>
                 </div>
 
                 <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg hover:border-slate-600 transition-colors">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm text-slate-400 mb-1">Canceled Requests</p>
-                            <p class="text-3xl font-bold text-slate-100">20</p>
+                            <p class="text-sm text-slate-400 mb-1">Rejected Requests</p>
+                            <p class="text-3xl font-bold text-slate-100">{{ $rejected_requests }}</p>
                         </div>
                         <div class="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 20 21">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 3.464V1.1m0 2.365a5.338 5.338 0 0 1 5.133 5.368v1.8c0 2.386 1.867 2.982 1.867 4.175C17 15.4 17 16 16.462 16H3.538C3 16 3 15.4 3 14.807c0-1.193 1.867-1.789 1.867-4.175v-1.8A5.338 5.338 0 0 1 10 3.464ZM4 3 3 2M2 7H1m15-4 1-1m1 5h1M6.54 16a3.48 3.48 0 0 0 6.92 0H6.54Z"/>
                             </svg>
                         </div>
-                    </div>
-                    <div class="mt-3 text-sm text-blue-400 flex items-center">
-                        <span>-1.8% from yesterday</span>
                     </div>
                 </div>
             </div>

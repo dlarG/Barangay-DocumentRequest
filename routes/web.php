@@ -42,10 +42,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
          
     Route::resource('document-requests', DocumentRequestController::class)
-        ->only(['index', 'update'])
-        ->names([
-            'index' => 'documents.index',
-            'update' => 'documents.update'
+    ->only(['index', 'update', 'show'])
+    ->names([
+        'index' => 'documents.index',
+        'update' => 'documents.update',
+        'show' => 'documents.show'
     ]);
 });
     

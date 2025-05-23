@@ -29,4 +29,8 @@ class DocumentRequestController extends Controller
 
         return back()->with('success', 'Request updated successfully');
     }
+    public function show(DocumentRequest $documentRequest)
+    {
+        return view('admin.documents.show', compact('documentRequest'));
+    }
 }

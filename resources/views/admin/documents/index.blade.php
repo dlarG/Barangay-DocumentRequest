@@ -44,7 +44,7 @@
                                             </span>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <a href="{{ route('requests.show', $request) }}" class="text-blue-400 hover:text-blue-300">
+                                            <a href="{{ route('admin.documents.show', $request) }}" class="text-blue-400 hover:text-blue-300">
                                                 View Details
                                             </a>
                                         </td>

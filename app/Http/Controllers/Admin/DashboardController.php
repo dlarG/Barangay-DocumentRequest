@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DocumentRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,7 +13,8 @@ class DashboardController extends Controller
         $requests = DocumentRequest::with(['user', 'document'])
         ->latest()
         ->paginate(10);
+        $rejected_requests = DocumentRequest::where('status', 'rejected')->count();
 
-        return view('admin.dashboard', compact('requests'));
+        return view('admin.dashboard', compact('requests', 'rejected_requests'));
     }
 }

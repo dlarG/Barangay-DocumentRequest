@@ -14,6 +14,6 @@ class CheckResident
             return $next($request);
         }
 
-        return redirect()->route('/login')->with('error', 'Unauthorized access');
+        return redirect()->route('login')->with('error', 'Unauthorized access');
     }
 }
