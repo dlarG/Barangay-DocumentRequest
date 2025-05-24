@@ -15,8 +15,16 @@
             <div class="bg-slate-900 p-8">
                 <div class="max-w-7xl mx-auto">
                     <div class="bg-slate-800 rounded-xl p-6 shadow-lg">
-                        <h2 class="text-2xl font-bold text-slate-100 mb-6">Document Types</h2>
-                        
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-2xl font-bold text-slate-100">Document Types</h2>
+                            <a href="{{ route('admin.documents.create') }}" 
+                            class="bg-gradient-to-br from-blue-600 to-cyan-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                </svg>
+                                Add New Document
+                            </a>
+                        </div>
                         <div class="overflow-x-auto">
                             <table class="w-full">
                                 <thead class="bg-slate-700">
@@ -30,7 +38,11 @@
                                 <tbody class="divide-y divide-slate-700">
                                     @foreach($documents as $document)
                                     <tr class="hover:bg-slate-700/50">
-                                        <td class="px-6 py-4 text-slate-200">{{ $document->name }}</td>
+                                        <td class="px-6 py-4 text-slate-200">
+                                            <a href="{{ route('admin.documents.details', $document) }}" class="text-blue-400 hover:underline">
+                                                {{ $document->name }}
+                                            </a>
+                                        </td>
                                         <td class="px-6 py-4 text-slate-400">{{ $document->requests_count }}</td>
                                         <td class="px-6 py-4 text-slate-400">
                                             {{ $document->requests->where('status', 'pending')->count() }}
