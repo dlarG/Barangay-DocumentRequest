@@ -30,7 +30,7 @@
                         </div>
                         
                         <div class="flex-1">
-                            <h1 class="text-2xl font-bold mb-1">{{ $resident->full_name }}</h1>
+                            <h1 class="text-2xl font-bold mb-1">{{ $resident->firstname }} {{ $resident->middlename}} {{ $resident->lastname}}</h1>
                             <div class="flex items-center gap-3 text-slate-400">
                                 <span class="flex items-center gap-1">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

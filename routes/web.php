@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentRequestController;
+use App\Http\Controllers\Admin\ReportsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DocumentRequestController as ControllersDocumentRequestController;
 use App\Http\Controllers\ProfileController;
@@ -54,6 +55,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::get('/dx', [ReportsController::class, 'index'])->name('reports.index');
+    Route::post('/generate', [ReportsController::class, 'generate'])->name('reports.generate');
+    Route::post('/export', [ReportsController::class, 'exportPdf'])->name('reports.export');
+
+    Route::get('/settings', [\App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings.index');
+    Route::put('/documents', [\App\Http\Controllers\Admin\SettingsController::class, 'updateDocumentSettings'])->name('settings.update-documents');
 });
     
 

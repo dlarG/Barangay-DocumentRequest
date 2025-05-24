@@ -13,6 +13,15 @@
 
         <main class="ml-64 pt-16 p-8">
             <div class="bg-slate-900 p-8">
+                @if($errors->any())
+                    <div class="mb-6 p-4 bg-red-800 text-red-100 rounded-lg">
+                        <ul class="list-disc pl-5">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="max-w-3xl mx-auto">
                     <div class="bg-slate-800 rounded-xl p-6 shadow-lg">
                         <h2 class="text-2xl font-bold text-slate-100 mb-6">{{ isset($resident) ? 'Edit' : 'Create' }} Resident</h2>
@@ -119,7 +128,10 @@
                                 <label class="block text-slate-300 mb-1" for="password">Password</label>
                                 <input type="password" name="password" id="password"
                                     class="form-input" {{ isset($resident) ? '' : 'required' }}>
-                                @error('password') <span class="text-red-400 text-xs">{{ $message }}</span> @enderror
+                                @error('password') 
+                                <span class="text-red-400 text-xs">{{ $message }}</span> 
+                                @enderror
+                                <p class="text-slate-400 text-xs mt-1">Must contain uppercase, lowercase, and number</p>
                             </div>
                             <div>
                                 <label class="block text-slate-300 mb-1" for="password_confirmation">Confirm Password</label>
@@ -142,7 +154,6 @@
                                     <option value="">Select Gender</option>
                                     <option value="male" {{ old('gender', $resident->gender ?? '') == 'male' ? 'selected' : '' }}>Male</option>
                                     <option value="female" {{ old('gender', $resident->gender ?? '') == 'female' ? 'selected' : '' }}>Female</option>
-                                    <option value="other" {{ old('gender', $resident->gender ?? '') == 'other' ? 'selected' : '' }}>Other</option>
                                 </select>
                                 @error('gender') <span class="text-red-400 text-xs">{{ $message }}</span> @enderror
                             </div>

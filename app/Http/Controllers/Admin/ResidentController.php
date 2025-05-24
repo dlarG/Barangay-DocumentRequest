@@ -28,7 +28,6 @@ class ResidentController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users', 'regex:/^[a-zA-Z0-9_]+$/'],
             'email' => ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
-            'roleType' => ['required', 'string', 'in:resident,admin'],
             'birthdate' => ['required', 'date'],
             'gender' => ['required', 'string', 'in:male,female,other'],
             'address' => ['required', 'string', 'max:255'],
@@ -37,7 +36,7 @@ class ResidentController extends Controller
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
-
+        $walidated['roleType'] = 'resident'; // Ensure the roleType is set to 'resident'
         // Handle profile picture upload
         if ($request->hasFile('profile_picture')) {
             $file = $request->file('profile_picture');
