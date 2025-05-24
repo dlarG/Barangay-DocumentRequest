@@ -1,2 +1,6 @@
 @import "tailwindcss";
 @source "../views";
+
+.form-input {
+    @apply w-full rounded-lg border border-slate-600 bg-slate-700 text-slate-100 p-2;
+}

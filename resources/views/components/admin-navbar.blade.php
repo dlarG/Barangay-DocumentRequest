@@ -1,4 +1,4 @@
-<nav class="ml-64 fixed w-[calc(100%-16rem)] h-16 bg-slate-900 border-b border-gray-700 shadow-sm px-6 flex items-center justify-between">
+<nav class="ml-64 fixed w-[calc(100%-16rem)] h-16 bg-slate-900 border-b border-gray-700 shadow-sm px-6 flex items-center justify-between z-[999]">
     <!-- Left Section -->
     <div class="flex items-center space-x-4">
         <h1 class="text-gray-300 font-medium">
@@ -37,7 +37,7 @@
                  x-transition:leave-start="opacity-100 scale-100"
                  x-transition:leave-end="opacity-0 scale-95"
                  class="absolute right-0 mt-2 w-48 bg-slate-800 rounded-lg shadow-xl py-2 border border-gray-700 z-50">
-                <a href="#" class="px-4 py-2.5 text-sm text-gray-300 hover:bg-slate-700 flex items-center space-x-2 transition-colors">
+                <a href="{{ route('admin.profile.show') }}" class="px-4 py-2.5 text-sm text-gray-300 hover:bg-slate-700 flex items-center space-x-2 transition-colors">
                     <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                     </svg>

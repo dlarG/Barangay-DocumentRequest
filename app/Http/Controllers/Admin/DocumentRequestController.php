@@ -3,34 +3,39 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Document as ModelsDocument;
 use App\Models\DocumentRequest;
+use Dom\Document;
 use Illuminate\Http\Request;
 
 class DocumentRequestController extends Controller
 {
     public function index()
     {
-        $requests = DocumentRequest::with(['user', 'document'])->latest()->paginate(10);
-        return view('admin.documents.index', compact('requests'));
+        $documents = ModelsDocument::withCount('requests')->paginate(10);
+        return view('admin.documents.index', compact('documents'));
     }
 
     public function update(Request $request, DocumentRequest $documentRequest)
     {
         $validated = $request->validate([
             'status' => 'required|in:approved,rejected,processing,ready',
-            'admin_notes' => 'nullable|string|max:1000'
         ]);
 
         $documentRequest->update([
             'status' => $validated['status'],
-            'admin_notes' => $validated['admin_notes'],
             'approved_at' => $validated['status'] === 'approved' ? now() : null
         ]);
 
         return back()->with('success', 'Request updated successfully');
     }
-    public function show(DocumentRequest $documentRequest)
+    
+    public function show(ModelsDocument $document)
     {
-        return view('admin.documents.show', compact('documentRequest'));
+        $document->load(['requests.user' => function($query) {
+            $query->latest();
+        }]);
+        
+        return view('admin.documents.show', compact('document'));
     }
 }

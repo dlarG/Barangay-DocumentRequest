@@ -17,7 +17,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-slate-400 mb-1">Pending Requests</p>
-                            <p class="text-3xl font-bold text-slate-100">{{ Auth::user()->where('email_verified_at', '')->count() }}</p>
+                            <p class="text-3xl font-bold text-slate-100">{{ App\Models\DocumentRequest::where('status', 'pending')->count() }}</p>
                         </div>
                         <div class="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentRequestController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DocumentRequestController as ControllersDocumentRequestController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VerificationController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -41,13 +42,18 @@ Route::post('/email/verify/resend', [VerificationController::class, 'resend'])
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
          
-    Route::resource('document-requests', DocumentRequestController::class)
-    ->only(['index', 'update', 'show'])
-    ->names([
-        'index' => 'documents.index',
-        'update' => 'documents.update',
-        'show' => 'documents.show'
-    ]);
+    Route::get('/admin/documents', [DocumentRequestController::class, 'index'])->name('documents.index');
+    Route::get('/admin/documents/{document}', [DocumentRequestController::class, 'show'])->name('documents.show');
+    Route::put('/admin/documents/{documentRequest}', [DocumentRequestController::class, 'update'])->name('documents.update');
+
+    Route::resource('residents', \App\Http\Controllers\Admin\ResidentController::class)
+         ->names('residents');
+
+    
+    Route::get('/', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
     
 
